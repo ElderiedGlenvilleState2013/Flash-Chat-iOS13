@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CLTypingLabel
 
 class WelcomeViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: CLTypingLabel!
+    
+    
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "loginVC", sender: nil)
@@ -37,7 +40,9 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        labelAnimation()
+      //  labelAnimation()
+        
+        self.titleLabel.text = "⚡️FlashChat"
        
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
 
@@ -14,7 +15,19 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextfield: UITextField!
     
     @IBAction func registerPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "registerVC", sender: nil)
+        
+        if let email = emailTextfield.text, let password = passwordTextfield.text {
+            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                if let e = error {
+                    print(e)
+                    self.emailTextfield.backgroundColor = .red
+                    self.passwordTextfield.backgroundColor = .red
+                }else {
+                    self.performSegue(withIdentifier: "registerVC", sender: self)
+                }
+                  }
+        }
+        
     }
     
 }
